@@ -6,6 +6,7 @@ const port = 3000;
 var number =0;8
 
 app.use(express.static('public'));
+app.set('view engine', 'pug');
 
 app.get('/catinfo', (req, res)=>{
   const cat = {
@@ -20,7 +21,17 @@ app.get('/catinfo', (req, res)=>{
 app.get('/test',(req, res) =>{
     console.log("hahaha")
     ++number
-    res.send('<h1> Test page </h1> <p> '+ number +'</p>')
+    // example using pug
+    res.render('test',{
+      title:"Pug page",
+      header1:"This is Pug page",
+      header2:"Counter",
+      exampletext: "Page requested "+ number +" times."
+    });
+    
+    
+    //basic html as string
+    //res.send('<h1> Test page </h1> <p> '+ number +'</p>')
 });
 
 
