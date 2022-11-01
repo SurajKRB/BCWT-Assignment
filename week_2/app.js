@@ -7,4 +7,9 @@ app.get('/cat', (req, res) => {
   res.send('From this endpoint you can get cats.')
 });
 
+
+app.get('/user', (req, res) => {
+  res.send('From this endpoint you can get users.')
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
