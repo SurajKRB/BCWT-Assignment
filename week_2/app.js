@@ -2,36 +2,12 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const catRouter = require('./routes/catRoute')
+app.use('/cat', catRouter);
 
-app.get('/cat', (req, res) => {
-  res.send('From this endpoint you can get cats.')
-});
-
-
-app.get('/cat/:catId', (req, res) => {
-  console.log(req.params);
-  res.send('From this endpoint you can get cat with id '+req.params.catId);
-});
-
-
-app.post('/cat',(req,res)=>{
-  res.send('From this endpoint you can add cats.');
-});
-
-
-app.put('/cat',(req,res)=>{
-  res.send('From this endpoint you can edit cats.');
-});
-
-
-app.delete('/cat',(req,res)=>{
-  res.send('From this endpoint you can delete cats.');
-});
-
-
-app.get('/user', (req, res) => {
-  res.send('From this endpoint you can get users.');
-});
+const userRouter = require('./routes/userRouter')
+app.use('/user', userRouter);
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
