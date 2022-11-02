@@ -1,3 +1,4 @@
 node_modules/
 week_2/uploads/*
 !week_2/uploads/.gitkeep
+.env
