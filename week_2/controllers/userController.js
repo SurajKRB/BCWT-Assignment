@@ -23,11 +23,18 @@ const getUser = (req, res) => {
   };
 
 
+  const createUser = (req, res)=>{
+
+        const userInfo = `username: ${req.body.name}, email: ${req.body.email}, password: ${req.body.password}`;
+        res.send('Adding new user: '+ userInfo);
+  };
+
 
 
 
 
 module.exports = {
     getAllUsers,
-    getUser
+    getUser,
+    createUser
 };
