@@ -19,17 +19,29 @@ const getCat = async (req, res) => {
     }
   };
 
-  const createCat = (req, res) => {
-    console.log(res)
-    res.send('adding a cat');
+  const createCat = async(req, res) => {
+    console.log("creating a new cat: ", req.body);
+        const newCat = req.body;
+        newCat.filename = req.file.filename;
+        const result = await catModel.addCat(newCat);
+        res.status(201).json({newCatId: result});
   };
 
-
+  const deleteCat = async(req, res) => {
+    const result = await catModel.deleteCatById(res, req.params.catId );
+    console.log('cat deleted', result);
+    if(result.affectedRows>0){
+      res.json({message: 'cat deleted'});
+    } else{
+      res.status(404).json({message: 'cat was already deleted'});
+    }
+  };
 
 
 
 module.exports = {
     getAllCats,
     getCat,
-    createCat
+    createCat,
+    deleteCat
 };

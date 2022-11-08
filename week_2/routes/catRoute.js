@@ -20,9 +20,7 @@ res.send('From this endpoint you can edit cats.');
 });
 
 
-router.delete('/',(req,res)=>{
-res.send('From this endpoint you can delete cats.');
-});
+router.delete('/:catId', catController.deleteCat);
 
 
 module.exports = router;
