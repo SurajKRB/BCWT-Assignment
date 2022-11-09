@@ -40,12 +40,28 @@ const addUser = async (userObject, res) => {
 
 
 
+const deleteUserById = async ( req, userId) => {
+  try {
+    const [rows] = await promisePool.query("DELETE FROM wop_user WHERE user_id = ?", [userId]);
+    return rows;
+  } catch (e) {
+    console.error("error", e.message);
+    res.status(500).send(e.message);
+  }
+};
+
+
+const updateCUserById = async (catObject, res) => {
+};
+
 
 
 module.exports = {
   getAllUsers,
   getUserById,
-  addUser
+  addUser,
+  deleteUserById,
+  updateCUserById
 };
 
 

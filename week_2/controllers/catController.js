@@ -37,11 +37,24 @@ const getCat = async (req, res) => {
     }
   };
 
+  const modifyCat = async (req, res) => {
+    const cat = req.body;
+    if(req.params.catId){
+      cat.id = req.params.catId;
+    }
+    const result = await catModel.updateCatById(cat, res);
+    if(result.affectedRows>0){
+      res.json({message: 'cat modified', catId: cat.id});
+    } else{
+      res.status(404).json({message: 'There doesnot exist any cat with this ID'});
+    }
+  };
 
 
 module.exports = {
     getAllCats,
     getCat,
     createCat,
-    deleteCat
+    deleteCat,
+    modifyCat
 };

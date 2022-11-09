@@ -1,11 +1,13 @@
 "use strict";
+const { request } = require("express");
 const pool = require("../database/db");
 const promisePool = pool.promise();
 
 const getAllCats = async (res) => {
   try {
-    // TODO: do the LEFT (or INNER) JOIN to get owner's name as ownername (from wop_user table).
-    const [rows] = await promisePool.query("SELECT * FROM wop_cat");
+    const sql = 'select cat_id, wop_cat.name, weight, owner, filename, birthdate,wop_user.name as ownername '+
+                  'from wop_cat inner join wop_user on wop_cat.owner=wop_user.user_id;'
+    const [rows] = await promisePool.query(sql);
     return rows;
   } catch (e) {
     console.error("error", e.message);
@@ -16,7 +18,6 @@ const getAllCats = async (res) => {
 
 const getCatById = async (res, catId) => {
   try {
-    // TODO: do the LEFT (or INNER) JOIN to get owner's name as ownername (from wop_user table).
     const [rows] = await promisePool.query("SELECT * FROM wop_cat WHERE cat_id = ?", [catId]);
     return rows[0];
   } catch (e) {
@@ -40,8 +41,21 @@ const addCat = async (catObject, res) => {
 
 const deleteCatById = async (req, catId) => {
   try {
-    // TODO: do the LEFT (or INNER) JOIN to get owner's name as ownername (from wop_user table).
     const [rows] = await promisePool.query("DELETE FROM wop_cat WHERE cat_id = ?", [catId]);
+    return rows;
+  } catch (e) {
+    console.error("error", e.message);
+    res.status(500).send(e.message);
+  }
+};
+
+
+// Update the data (put) 
+const updateCatById = async (catObject, res) => {
+  try {
+    const sql = 'UPDATE wop_cat SET name=?, weight=?, owner=?, birthdate=? WHERE cat_id=?';
+    const values = [catObject.name, catObject.weight, catObject.owner, catObject.birthdate, catObject.id];
+    const [rows] = await promisePool.query(sql, values);
     return rows;
   } catch (e) {
     console.error("error", e.message);
@@ -52,11 +66,14 @@ const deleteCatById = async (req, catId) => {
 
 
 
+
+
 module.exports = {
   getAllCats,
   getCatById,
   addCat,
-  deleteCatById
+  deleteCatById,
+  updateCatById
 };
 
 
