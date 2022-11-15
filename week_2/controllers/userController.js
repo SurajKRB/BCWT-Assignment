@@ -2,7 +2,7 @@
 // userController
 
 const userModel = require("../models/userModel");
-//const users = userModel.users;
+const {validationResult} = require('express-validator');
 
 
 const getAllUsers = async (req, res) => {
@@ -24,8 +24,21 @@ const getUser = async (req, res) => {
 const createUser = async(req, res)=>{
     console.log("creating a new user: ", req.body);
     const newUser = req.body;
-    const result = await userModel.addUser(newUser);
-    res.status(201).json({newUserId: result});
+    if (!newUser.role){
+      //default user role
+      newUser.role = 1;
+    }
+    const errors = validationResult(req);
+    console.log('error: ',errors);
+
+    if(errors.isEmpty()){
+      const result = await userModel.addUser(newUser);
+      res.status(201).json({message: 'user created', newUserId: result});
+    } else{
+      res.status(400).json({message: 'user creation failed', errors: errors.array()});
+    }
+
+
   };
 
 

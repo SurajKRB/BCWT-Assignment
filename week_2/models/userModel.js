@@ -29,7 +29,7 @@ const getUserById = async (res, userId) => {
 const addUser = async (userObject, res) => {
   try {
     const sql = "INSERT INTO wop_user VALUES (null, ?, ?, ?, ?)";
-    const values = [userObject.name, userObject.email,userObject.password, userObject.role];
+    const values = [userObject.name, userObject.email,userObject.passwd, userObject.role];
     const [result] = await promisePool.query(sql, values);
     return result.insertId;
   } catch (e) {
@@ -64,32 +64,3 @@ module.exports = {
   updateCUserById
 };
 
-
-
-
-
-
-
-
-
-/*
-
-const users = [
-  {
-    id: '1',
-    name: 'John Doe',
-    email: 'john@metropolia.fi',
-    password: '1234',
-  },
-  {
-    id: '2',
-    name: 'Jane Doez',
-    email: 'jane@metropolia.fi',
-    password: 'qwer',
-  },
-];
-
-module.exports = {
-  users,
-};
-*/

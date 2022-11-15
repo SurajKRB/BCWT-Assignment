@@ -2,7 +2,7 @@
 // catController
 
 const catModel = require("../models/catModel");
-// const cats = catModel.cats;
+const {validationResult} = require('express-validator');
 
 const getAllCats = async (req, res) => {
     const cats = await catModel.getAllCats(res);
@@ -20,11 +20,18 @@ const getCat = async (req, res) => {
   };
 
   const createCat = async(req, res) => {
-    console.log("creating a new cat: ", req.body);
-        const newCat = req.body;
-        newCat.filename = req.file.filename;
-        const result = await catModel.addCat(newCat);
-        res.status(201).json({newCatId: result});
+        
+        const errors = validationResult(req);
+        if(errors.isEmpty() && req.file){
+          console.log("creating a new cat: ", req.body);
+          const newCat = req.body;
+          newCat.filename = req.file.filename;
+          const result = await catModel.addCat(newCat);
+          res.status(201).json({message: 'cat created', newCatId: result});
+
+        } else{
+          res.status(400).json({message: 'cat creation failed', errors: errors.array()});
+        }
   };
 
   const deleteCat = async(req, res) => {
