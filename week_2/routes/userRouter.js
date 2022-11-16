@@ -9,9 +9,9 @@ const {body} = require('express-validator');
 router.get('/', userController.getAllUsers)
     .get('/:userId', userController.getUser)
     .post('/',
-    body('name').isLength({min: 3}), 
-    body('email').isEmail(), 
-    body('passwd').isLength({min: 8}),
+    body('name').isLength({min: 3}).trim().escape(), 
+    body('email').isEmail().normalizeEmail(), 
+    body('passwd').isLength({min: 8}).trim(),
     userController.createUser)
     .delete('/:userId', userController.deleteUser)
     

@@ -6,7 +6,6 @@ const picArray = [
     'filename': 'img/pic1.jpg',
   },
   {
-
     'title': 'Title 2',
     'caption': 'Caption 2',
     'description': 'Donec dignissim tincidunt nisl, non scelerisque massa pharetra ut. Sed vel velit ante. Aenean quis viverra magna. Praesent eget cursus urna. Ut rhoncus interdum dolor non tincidunt. Sed vehicula consequat facilisis. Pellentesque pulvinar sem nisl, ac vestibulum erat rhoncus id. Vestibulum tincidunt sapien eu ipsum tincidunt pulvinar. ',
@@ -25,7 +24,6 @@ const picArray = [
     'filename': 'img/pic4.jpg',
   },
   {
-
     'title': 'Title 5',
     'caption': 'Caption 5',
     'description': 'Sed vel velit ante. Aenean quis viverra magna. Praesent eget cursus urna. Ut rhoncus interdum dolor non tincidunt. Sed vehicula consequat facilisis. Pellentesque pulvinar sem nisl, ac vestibulum erat rhoncus id. Vestibulum tincidunt sapien eu ipsum tincidunt pulvinar. Donec dignissim tincidunt nisl, non scelerisque massa pharetra ut. ',
@@ -36,7 +34,8 @@ const picArray = [
     'caption': 'Caption 6',
     'description': 'Sed vel velit ante. Aenean quis viverra magna. Praesent eget cursus urna. Ut rhoncus interdum dolor non tincidunt. Sed vehicula consequat facilisis. Pellentesque pulvinar sem nisl, ac vestibulum erat rhoncus id. Phasellus imperdiet nunc tincidunt molestie vestibulum. Donec dictum suscipit nibh.',
     'filename': 'img/pic6.jpg',
-  }, {
+  }, 
+  {
     'title': 'Title 7',
     'caption': 'Caption 7',
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sodales enim eget leo condimentum vulputate. Sed lacinia consectetur fermentum. Vestibulum lobortis purus id nisi mattis posuere. Praesent sagittis justo quis nibh ullamcorper, eget elementum lorem consectetur. Pellentesque eu consequat justo, eu sodales eros.',
@@ -58,3 +57,25 @@ const picArray = [
 ];
 
 // Put code of task C here
+const main = document.querySelector("main");
+
+picArray.forEach(element => {
+  
+  const articleObject = main.appendChild(document.createElement('article'));
+
+  articleObject.appendChild(document.createElement('header'))
+  .appendChild(document.createElement('h2'))
+  .appendChild(document.createTextNode(element.title));
+  
+  const figureObj = articleObject.appendChild(document.createElement('figure'));
+  
+  const imageObj = figureObj.appendChild(document.createElement('img'));
+  
+  imageObj.src = element.filename;
+  imageObj.alt = element.title;
+  
+  figureObj.appendChild(document.createElement('figcaption')).textContent = element.caption;
+  
+  articleObject.appendChild(document.createElement('p')).textContent = element.description;
+});
+

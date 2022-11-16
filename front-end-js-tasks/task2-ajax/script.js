@@ -36,12 +36,26 @@ const renderResults = (data) =>{
     // loop through all search results
     for (let i=0; i<data.length; i++){
         const h3 = document.createElement('h3');
-        h3.innerText = data[i].show.name;
+        h3.innerHTML = data[i].show.name;
+
+        const link = data[i].show.officialSite;
+        const offSite = document.createElement('a');
+        if(link!=null){
+            const text = document.createTextNode("Official Site");
+            offSite.appendChild(text);
+            offSite.href = link;
+        }
+        
         const img = document.createElement('img');
         img.src = data[i].show.image.medium;
-        const summ = document.createElement('div');
+        
+        const summ = document.createElement('p');
         summ.innerHTML = data[i].show.summary;
-        result.append(h3, img, summ);
+        
+        const genre = document.createElement('p');
+        genre.innerText = data[i].show.genres.join(' | ');
+        
+        result.append(h3, offSite, genre, img, summ);
     }
 };
 
