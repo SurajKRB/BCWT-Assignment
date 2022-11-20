@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 3 balloon</title>
+  </head>
+  <body>
+    <p>🎈</p>
+
+<script>
+  const p = document.querySelector("p");
+  var size;
+  function setSize(newSize) {
+    size = newSize;
+    p.style.fontSize = size + "px";
+  }
+  setSize(20);
+
+  function handleArrow(event) {
+    if (event.key == "ArrowUp") {
+      if (size > 150) {
+        p.textContent = "💥";
+        document.body.removeEventListener("keydown", handleArrow);
+      } else {
+        setSize(size * 1.05);
+        event.preventDefault();
+      }
+    } else if (event.key == "ArrowDown") {
+      setSize(size * 0.95);
+      event.preventDefault();
+    }
+  }
+  document.body.addEventListener("keydown", handleArrow);
+</script>
+
+  </body>
+</html>

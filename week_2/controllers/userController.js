@@ -2,20 +2,18 @@
 // userController
 
 const userModel = require("../models/userModel");
-const users = userModel.users;
+const {validationResult} = require('express-validator');
 
-const getAllUsers = (req, res) => {
-    users.map(haha => {
-        delete haha.password;
-        return haha;
-    });
-    res.json(users);
-  };
 
-const getUser = (req, res) => {
-    const user = users.filter(user => req.params.userId == user.id)[0];
+const getAllUsers = async (req, res) => {
+    const users = await userModel.getAllUsers(res);
+res.json(users);
+};
+
+
+const getUser = async (req, res) => {
+    const user = await userModel.getUserById(res, req.params.userId);
     if(user){
-        delete user.password;
         res.json(user);
     } else{
         res.sendStatus(404);
@@ -23,18 +21,47 @@ const getUser = (req, res) => {
   };
 
 
-  const createUser = (req, res)=>{
+const createUser = async(req, res)=>{
+    console.log("creating a new user: ", req.body);
+    const newUser = req.body;
+    if (!newUser.role){
+      //default user role
+      newUser.role = 1;
+    }
+    const errors = validationResult(req);
+    console.log('error: ',errors);
 
-        const userInfo = `username: ${req.body.name}, email: ${req.body.email}, password: ${req.body.password}`;
-        res.send('Adding new user: '+ userInfo);
+    if(errors.isEmpty()){
+      const result = await userModel.addUser(newUser);
+      res.status(201).json({message: 'user created', newUserId: result});
+    } else{
+      res.status(400).json({message: 'user creation failed', errors: errors.array()});
+    }
+
+
   };
 
 
+  const deleteUser = async(req, res)=>{
+    const result = await userModel.deleteUserById(res, req.params.userId  );
+    console.log('user deleted', result);
+    if(result.affectedRows>0){
+        res.json({message: 'user deleted'});
+      } else{
+        res.status(404).json({message: 'user was already deleted'});
+      }
+};
 
+
+const modifyUser = async(req, res)=>{
+    // TODO
+  };
 
 
 module.exports = {
     getAllUsers,
     getUser,
-    createUser
+    createUser,
+    modifyUser,
+    deleteUser
 };

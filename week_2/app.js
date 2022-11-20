@@ -13,6 +13,8 @@ app.use('/cat', catRouter);
 const userRouter = require('./routes/userRouter')
 app.use('/user', userRouter);
 
+//serve upload files
+app.use(express.static('uploads'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
