@@ -7,13 +7,13 @@ const {body} = require('express-validator');
 const catController = require('../controllers/catController');
 
 const file_filter = (req, file, cb) =>{
-    const acceptedFileType = ['image/jpeg','image/gif'];
+    const acceptedFileType = ['image/jpeg','image/png','image/gif'];
     if(acceptedFileType.includes(file.mimetype)){
         cb(null, true);
     } else{
         cb(null, false);
     }
-}
+};
 const upload = multer({dest: 'uploads/', fileFilter: file_filter});
 
 

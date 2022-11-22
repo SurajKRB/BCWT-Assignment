@@ -51,7 +51,18 @@ const deleteUserById = async ( req, userId) => {
 };
 
 
-const updateCUserById = async (catObject, res) => {
+const updateUserById = async (userObject, res) => {
+
+  try {
+    const sql = 'UPDATE wop_user SET name=?, email=?, password=? WHERE user_id=?';
+    const values = [userObject.name, userObject.email, userObject.passwd, userObject.id];
+    const [rows] = await promisePool.query(sql, values);
+    return rows;
+  } catch (e) {
+    console.error("error", e.message);
+    res.status(500).send(e.message);
+  }
+
 };
 
 
@@ -61,6 +72,6 @@ module.exports = {
   getUserById,
   addUser,
   deleteUserById,
-  updateCUserById
+  updateUserById
 };
 
