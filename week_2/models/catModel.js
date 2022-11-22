@@ -5,7 +5,7 @@ const promisePool = pool.promise();
 
 const getAllCats = async (res) => {
   try {
-    const sql = 'select cat_id, wop_cat.name, weight, owner, filename, birthdate,wop_user.name as ownername '+
+    const sql = 'select cat_id, wop_cat.name, weight, owner, filename, wop_cat.birthdate, wop_user.name as ownername '+
                   'from wop_cat inner join wop_user on wop_cat.owner=wop_user.user_id;'
     const [rows] = await promisePool.query(sql);
     return rows;

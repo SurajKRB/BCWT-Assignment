@@ -37,8 +37,6 @@ const createUser = async(req, res)=>{
     } else{
       res.status(400).json({message: 'user creation failed', errors: errors.array()});
     }
-
-
   };
 
 
@@ -54,7 +52,16 @@ const createUser = async(req, res)=>{
 
 
 const modifyUser = async(req, res)=>{
-    // TODO
+  const user = req.body;
+  if(req.params.userId){
+    user.id = req.params.userId;
+  }
+  const result = await userModel.updateUserById(user, res);
+  if(result.affectedRows>0){
+    res.json({message: 'user modified', userId: user.id});
+  } else{
+    res.status(404).json({message: 'There doesnot exist any user with this ID'});
+  }
   };
 
 
