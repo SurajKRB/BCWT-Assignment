@@ -28,8 +28,18 @@ router.get('/', catController.getAllCats)
         catController.createCat)
     .delete('/:catId', catController.deleteCat)
     
-    .put('/',catController.modifyCat)
-    .put('/:catId',catController.modifyCat);
+    .put('/',
+        body('name').isAlphanumeric().trim().escape(),
+        body('birthdate').isDate(),
+        body('weight').isFloat({min: 0.1, max: 30}),
+        body('owner').isInt({min:1}),
+        catController.modifyCat)
+    .put('/:catId',
+        body('name').isAlphanumeric().trim().escape(),
+        body('birthdate').isDate(),
+        body('weight').isFloat({min: 0.1, max: 30}),
+        body('owner').isInt({min:1}),
+        catController.modifyCat);
     
 
 

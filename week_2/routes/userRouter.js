@@ -15,7 +15,15 @@ router.get('/', userController.getAllUsers)
     userController.createUser)
     .delete('/:userId', userController.deleteUser)
     
-    .put('/',userController.modifyUser)
-    .put('/:userId',userController.modifyUser);
+    .put('/',
+        body('name').isLength({min: 3}).trim().escape(), 
+        body('email').isEmail().normalizeEmail(), 
+        body('passwd').isLength({min: 8}).trim(),
+        userController.modifyUser)
+    .put('/:userId',
+        body('name').isLength({min: 3}).trim().escape(), 
+        body('email').isEmail().normalizeEmail(), 
+        body('passwd').isLength({min: 8}).trim(),
+        userController.modifyUser);
 
 module.exports = router;
