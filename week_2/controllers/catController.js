@@ -22,7 +22,7 @@ const createCat = async (req, res) => {
   const errors = validationResult(req);
   if (!req.file) {
     res.status(400).json({ message: "file missing or invalid"});
-  }else if (errors.isEmpty()) {
+  } else if (errors.isEmpty()) {
     console.log("creating a new cat: ", req.body);
     const newCat = req.body;
     newCat.filename = req.file.filename;
