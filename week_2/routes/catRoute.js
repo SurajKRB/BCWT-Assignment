@@ -21,24 +21,21 @@ router.get('/', catController.getAllCats)
     .get('/:catId', catController.getCat)
     .post('/',
         upload.single('cat'),
-        body('name').isAlphanumeric().trim().escape(),
+        body('name').isLength({min: 3}).trim().escape(),
         body('birthdate'),
         body('weight').isFloat({min: 0.1, max: 30}),
-        body('owner').isInt({min:1}),
         catController.createCat)
     .delete('/:catId', catController.deleteCat)
     
     .put('/',
-        body('name').isAlphanumeric().trim().escape(),
+        body('name').isLength({min: 3}).trim().escape(),
         body('birthdate').isDate(),
         body('weight').isFloat({min: 0.1, max: 30}),
-        body('owner').isInt({min:1}),
         catController.modifyCat)
     .put('/:catId',
-        body('name').isAlphanumeric().trim().escape(),
+        body('name').isLength({min: 3}).trim().escape(),
         body('birthdate').isDate(),
         body('weight').isFloat({min: 0.1, max: 30}),
-        body('owner').isInt({min:1}),
         catController.modifyCat);
     
 

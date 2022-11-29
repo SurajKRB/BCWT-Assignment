@@ -64,11 +64,15 @@ const modifyUser = async(req, res)=>{
   }
   };
 
+  const checkToken = (req, res)=>{
+      res.json({user: req.user});
+  };
 
 module.exports = {
     getAllUsers,
     getUser,
     createUser,
     modifyUser,
-    deleteUser
+    deleteUser,
+    checkToken
 };

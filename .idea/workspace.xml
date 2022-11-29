@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4c691fd6-bb26-4fa5-b9e0-43395b3be34b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/example-ui/ui3/add-cat.html" beforeDir="false" afterPath="$PROJECT_DIR$/example-ui/ui3/add-cat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-ui/ui3/js/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/example-ui/ui3/js/logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-ui/ui3/modify-cat.html" beforeDir="false" afterPath="$PROJECT_DIR$/example-ui/ui3/modify-cat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/controllers/catController.js" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/controllers/catController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/models/catModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/models/catModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/models/userModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/models/userModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/routes/catRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/routes/catRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/week_2/routes/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/week_2/routes/userRouter.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2IDSB6dyzcdAx4Kpus2vavq8321" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4c691fd6-bb26-4fa5-b9e0-43395b3be34b" name="Changes" comment="" />
+      <created>1669714523578</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1669714523578</updated>
+    </task>
+    <servers />
+  </component>
+</project>

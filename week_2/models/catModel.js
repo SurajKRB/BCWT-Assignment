@@ -39,9 +39,9 @@ const addCat = async (catObject, res) => {
 };
 
 
-const deleteCatById = async (req, catId) => {
+const deleteCatById = async (req, catId, owner) => {
   try {
-    const [rows] = await promisePool.query("DELETE FROM wop_cat WHERE cat_id = ?", [catId]);
+    const [rows] = await promisePool.query("DELETE FROM wop_cat WHERE cat_id = ? and owner = ?", [catId, owner]);
     return rows;
   } catch (e) {
     console.error("error", e.message);
@@ -51,10 +51,10 @@ const deleteCatById = async (req, catId) => {
 
 
 // Update the data (put) 
-const updateCatById = async (catObject, res) => {
+const updateCatById = async (catObject, owner, res) => {
   try {
-    const sql = 'UPDATE wop_cat SET name=?, weight=?, owner=?, birthdate=? WHERE cat_id=?';
-    const values = [catObject.name, catObject.weight, catObject.owner, catObject.birthdate, catObject.id];
+    const sql = 'UPDATE wop_cat SET name=?, weight=?, birthdate=? WHERE cat_id=? and owner=?';
+    const values = [catObject.name, catObject.weight, catObject.birthdate, catObject.id, owner];
     const [rows] = await promisePool.query(sql, values);
     return rows;
   } catch (e) {

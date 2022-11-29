@@ -25,6 +25,7 @@ const createCat = async (req, res) => {
   } else if (errors.isEmpty()) {
     console.log("creating a new cat: ", req.body);
     const newCat = req.body;
+    newCat.owner = req.user.user_id;
     newCat.filename = req.file.filename;
     const result = await catModel.addCat(newCat);
     res.status(201).json({ message: "cat created", newCatId: result });
@@ -36,12 +37,12 @@ const createCat = async (req, res) => {
 };
 
 const deleteCat = async (req, res) => {
-  const result = await catModel.deleteCatById(res, req.params.catId);
+  const result = await catModel.deleteCatById(res, req.params.catId, req.user.user_id);
   console.log("cat deleted", result);
   if (result.affectedRows > 0) {
     res.json({ message: "cat deleted" });
   } else {
-    res.status(404).json({ message: "cat was already deleted" });
+    res.status(401).json({ message: "cat delete failed" });
   }
 };
 
@@ -50,13 +51,13 @@ const modifyCat = async (req, res) => {
   if (req.params.catId) {
     cat.id = req.params.catId;
   }
-  const result = await catModel.updateCatById(cat, res);
+  const result = await catModel.updateCatById(cat,req.user.user_id, res);
   if (result.affectedRows > 0) {
     res.json({ message: "cat modified", catId: cat.id });
   } else {
     res
       .status(404)
-      .json({ message: "There doesnot exist any cat with this ID" });
+      .json({ message: "Cat Modify Failed" });
   }
 };
 
