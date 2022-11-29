@@ -65,7 +65,8 @@ const modifyUser = async(req, res)=>{
   };
 
   const checkToken = (req, res)=>{
-      res.json({user: req.user});
+    delete req.user.password;
+    res.json({user: req.user});
   };
 
 module.exports = {
