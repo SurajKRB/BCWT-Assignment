@@ -21,6 +21,7 @@ app.use('/auth', authRouter);
 
 //serve upload files
 app.use(express.static('uploads'));
+app.use('/thumbnails', express.static('thumbnails'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
